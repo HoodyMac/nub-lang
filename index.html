@@ -49,7 +49,10 @@
                 }
 
                 for (let i in first) {
-                    result += first[i] + last[i];
+                    result += first[i];
+                    if (last[i] !== '-') {
+                        result += last[i];
+                    }
                     if (i === first.length-1) {
                         result += '.';
                     } else {
