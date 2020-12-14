@@ -4,12 +4,13 @@
     </head>
     <body>
         <label for="normal">Normal:</label>
-        <input type="text" id="normal">
+        <textarea id="normal" rows="5"></textarea>
         <hr/>
         <button id="translate" onclick="translateToNub()">Translate to nub</button>
+        <button id="translate" onclick="translateToEnglish()">Translate to english</button>
         <hr/>
         <label for="nub">Nub:</label>
-        <input type="text" id="nub">
+        <textarea id="nub" rows="5"></textarea>
 
         <script>
             function translateToNub() {
@@ -33,6 +34,30 @@
                 let result = first.join(' ') + '. ' + last.join(' ');
                 console.log(result);
                 document.getElementById('nub').value = result;
+            }
+
+            function translateToEnglish() {
+                var text = document.getElementById("nub").value;
+                let parts = text.split('. ');
+                let first = parts[0].split(' ');
+                let last = parts[1].split(' ');
+                var result = '';
+                if (first.length !== last.length) {
+                    result = "Error: left part size doesn't match to right part size (amount of words)";
+                    document.getElementById('normal').value = result;
+                    return;
+                }
+
+                for (let i in first) {
+                    result += first[i] + last[i];
+                    if (i === first.length-1) {
+                        result += '.';
+                    } else {
+                        result += ' ';
+                    }
+                }
+                console.log(result);
+                document.getElementById('normal').value = result;
             }
         </script>
     </body>
