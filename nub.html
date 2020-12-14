@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Nub lang</title>
+    </head>
+    <body>
+        <label for="normal">Normal:</label>
+        <input type="text" id="normal">
+        <hr/>
+        <button id="translate" onclick="translateToNub()">Translate to nub</button>
+        <hr/>
+        <label for="nub">Nub:</label>
+        <input type="text" id="nub">
+
+        <script>
+            function translateToNub() {
+                var text = document.getElementById("normal").value;
+                text = text.replace('.', '');
+                text = text.replace('!', '');
+                text = text.replace(',', '');
+                let words = text.split(' ');
+                let first = []
+                let last = []
+                for (let i in words) {
+                    let word = words[i];
+                    first.push(word[0]);
+
+                    if (word.length === 1) {
+                        last.push('-')
+                    } else {
+                        last.push(word.slice(1));
+                    }
+                }
+                let result = first.join(' ') + '. ' + last.join(' ');
+                console.log(result);
+                document.getElementById('nub').value = result;
+            }
+        </script>
+    </body>
+</html>
